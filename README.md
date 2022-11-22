@@ -101,7 +101,7 @@ Speedy is work in progress. Some areas to focus are:
 
 1. Add support for in-place matrix transpose.
 2. Shift to static polymorphism using CRTP to improve performance even further.
-3. Add support for statically matrices - matrices whose size is fixed at compile time.
+3. Add support for static matrices - matrices whose size is fixed at compile time.
 4. Add support for scalar multiplication, subtraction operator etc.  
 
 
