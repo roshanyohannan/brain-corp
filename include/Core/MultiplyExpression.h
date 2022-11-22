@@ -5,21 +5,22 @@
 
 namespace Speedy{
 
-class MultiplyExpression : public Expression
+template<typename T>
+class MultiplyExpression : public Expression<T>
 {
 public:
 
-MultiplyExpression(const Expression& left, const Expression& right)
+MultiplyExpression(const Expression<T>& left, const Expression<T>& right)
 : op1 (left),
   op2 (right)
 {
   if(left.size().cols != right.size().rows)
-    throw(std::invalid_argument("Given Matrices are incompatible for multiplication")); 
+    throw(std::invalid_argument("matrices are incompatible for multiplication")); 
 }
 
-int operator() (int row, int col) const override
+T operator() (int row, int col) const override
 {
-  int sum = 0;
+  T sum = 0;
   
   for(int k = 0; k < op1.size().cols; k++)
     sum += op1(row, k) * op2(k, col);
@@ -34,13 +35,14 @@ Dims size() const override
 
 
 private:
-  const Expression& op1;
-  const Expression& op2;
+  const Expression<T>& op1;
+  const Expression<T>& op2;
 };
 
-MultiplyExpression operator* (const Expression& left, const Expression& right)
+template<typename T>
+MultiplyExpression<T> operator* (const Expression<T>& left, const Expression<T>& right)
 {
-  return MultiplyExpression(left, right);
+  return MultiplyExpression<T>(left, right);
 }
 
 } //namespace 

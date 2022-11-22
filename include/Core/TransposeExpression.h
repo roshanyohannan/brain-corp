@@ -5,14 +5,15 @@
 
 namespace Speedy{
 
-class TransposeExpression : public Expression
+template<typename T>
+class TransposeExpression : public Expression<T>
 {
 public:
-TransposeExpression(const Expression& expression)
+TransposeExpression(const Expression<T>& expression)
 : op1 (expression)
 {}
 
-int operator() (int row, int col) const override
+T operator() (int row, int col) const override
 {
   return op1(col, row);
 }
@@ -24,12 +25,13 @@ Dims size() const override
 
 
 private:
-  const Expression& op1;
+  const Expression<T>& op1;
 };
 
-TransposeExpression transpose (const Expression& expression)
+template<typename T>
+TransposeExpression<T> transpose (const Expression<T>& expression)
 {
-  return TransposeExpression(expression);
+  return TransposeExpression<T>(expression);
 }
 
 } //namespace 

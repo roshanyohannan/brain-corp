@@ -5,11 +5,12 @@
 
 namespace Speedy{
 
-class AddExpression : public Expression
+template <typename T>
+class AddExpression : public Expression<T>
 {
 public:
 
-AddExpression(const Expression& left, const Expression& right)
+AddExpression(const Expression<T>& left, const Expression<T>& right)
 : op1 (left),
   op2 (right)
 {
@@ -17,7 +18,7 @@ AddExpression(const Expression& left, const Expression& right)
     throw(std::invalid_argument("Dimensions of operands for addition do not match")); 
 }
 
-int operator() (int row, int col) const override
+T operator() (int row, int col) const override
 {
   return op1(row, col) + op2(row, col);
 }
@@ -29,13 +30,15 @@ Dims size() const override
 
 
 private:
-  const Expression& op1;
-  const Expression& op2;
+  const Expression<T>& op1;
+  const Expression<T>& op2;
 };
 
-AddExpression operator+ (const Expression& left, const Expression& right)
+
+template <typename T>
+AddExpression<T> operator+ (const Expression<T>& left, const Expression<T>& right)
 {
-  return AddExpression(left, right);
+  return AddExpression<T>(left, right);
 }
 
 } //namespace 

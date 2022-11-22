@@ -18,10 +18,11 @@ struct Dims
 };
 
 
+template<typename T>
 class Expression
 {
 public:
-    virtual int     operator()  (int row, int col)  const = 0;
+    virtual T       operator()  (int row, int col)  const = 0;
     virtual Dims    size        ()                  const = 0;
 };
 
