@@ -7,16 +7,17 @@
 
 namespace Speedy {
 
-class Matrix : public Expression
+template<typename T>
+class Matrix : public Expression<T>
 {
 
 public:
 Matrix(int rows, int cols) : dims(rows,cols)
 {
-    data.resize(rows * cols, 0);
+    data.resize(rows * cols, {});
 }
 
-Matrix(const Expression& expression)
+Matrix(const Expression<T>& expression)
 {
     dims = expression.size();
     data.resize(dims.rows * dims.cols);
@@ -26,7 +27,7 @@ Matrix(const Expression& expression)
             this->operator()(i,j) = expression(i,j);
 }
 
-Matrix(std::initializer_list<std::vector<int>> list)
+Matrix(std::initializer_list<std::vector<T>> list)
 {
     dims.rows = list.size();
     dims.cols = list.size() == 0 ? 0 : list.begin()->size();
@@ -39,7 +40,7 @@ Matrix(std::initializer_list<std::vector<int>> list)
     }
 }
 
-int operator() (int row, int col) const override
+T operator() (int row, int col) const override
 {
     if(row < 0 || row > dims.rows || col < 0 || col > dims.cols)
         throw(std::invalid_argument("argument is outside bounds"));
@@ -47,7 +48,7 @@ int operator() (int row, int col) const override
     return data[row * dims.cols + col];
 }
 
-int& operator() (int row, int col)
+T& operator() (int row, int col)
 {
     if(row < 0 || row > dims.rows || col < 0 || col > dims.cols)
         throw(std::invalid_argument("argument is outside bounds"));
@@ -62,7 +63,7 @@ Dims size() const override
 
 private:
     Dims                dims;
-    std::vector<int>    data;
+    std::vector<T>      data;
 };
 
 

@@ -6,7 +6,8 @@
 #define SPEEDY_PRINTER_H
 
 
-std::ostream& operator << (std::ostream& out, const Speedy::Matrix& matrix)
+template<typename T>
+std::ostream& operator << (std::ostream& out, const Speedy::Expression<T>& matrix)
 {
     for(int i = 0; i < matrix.size().rows; i++)
     {
