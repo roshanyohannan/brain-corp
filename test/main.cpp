@@ -4,7 +4,6 @@ using namespace Speedy;
 int main(int argc, char** argv)
 {
 	
-	std::cout << "Hello world \n";
 	Matrix m(2,3);
 
 	m(0,0) = 1;
@@ -30,5 +29,9 @@ int main(int argc, char** argv)
 
 	std::cout << "Product : \n" << m2 * m4;
 
+	std::cout << "Tranpose of M2: \n" << transpose(m2);
+
+	std::cout << "Tranpose of product(m2, m4): \n" << transpose(m2 * m4);
+	
 	return 0;
 }
