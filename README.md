@@ -12,8 +12,6 @@ Since speedy is a header only library, it is easy to integrate in existing proje
 ## Usage
 See doc/tutorial
 ```
-	using namespace Speedy;
-
     //Constructors
     Matrix<int> m0;                                 // Create empty matrix size 0x0
     
