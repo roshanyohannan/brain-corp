@@ -18,13 +18,24 @@ struct Dims
 };
 
 
-struct Expression
+class Expression
 {
+public:
 	virtual int 	operator()	(int row, int col)	const = 0;
 	virtual Dims 	size		()					const = 0;
 };
 
 
+
+bool operator== (const Dims& left, const Dims& right)
+{
+	return (left.rows == right.rows) && (left.cols == right.cols);
+}
+
+bool operator!= (const Dims& left, const Dims& right)
+{
+	return !(left == right);
+}
 
 
 } // namespace

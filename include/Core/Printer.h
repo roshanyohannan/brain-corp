@@ -2,8 +2,8 @@
 #include <ostream>
 #include <iomanip>
 
-#ifndef SPEEDY_UTILS_H
-#define SPEEDY_UTILS_H
+#ifndef SPEEDY_PRINTER_H
+#define SPEEDY_PRINTER_H
 
 
 std::ostream& operator << (std::ostream& out, const Speedy::Matrix& matrix)
