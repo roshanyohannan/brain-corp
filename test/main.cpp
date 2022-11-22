@@ -4,6 +4,12 @@ using namespace Speedy;
 int main(int argc, char** argv)
 {
     
+    std::cout << "Version: " << version() << "\n";
+
+    Matrix<int> m0;
+
+    std::cout << m0.size().rows << " - " << m0.size().cols << "\n";
+
     Matrix<int> m(2,3);
 
     m(0,0) = 1;
@@ -41,11 +47,46 @@ int main(int argc, char** argv)
                       { 1.0f, 1.0f, 1.0f },
                       { 1.0f, 1.0f, 1.0f }};
 
-    std::cout << "M5: \n" << m5;
-    std::cout << "M6: \n" << m6;
+    //std::cout << "M5: \n" << m5;
+    //std::cout << "M6: \n" << m6;
 
-    std::cout << "Adding float matrices m5 and m6: \n" << m5 * m6;
+    //std::cout << "Adding float matrices m5 and m6: \n" << m5 * m6;
+
+    Matrix<double> m21{{ 5.0,   0.0,    0.0 },
+                       { 0.0,   5.0,    0.0 },
+                       { 0.0,   0.0,    5.0 }};
 
 
-    return 0;
+   Matrix<int> m7(10,10);
+
+   std::cout << "M7 before assignment: \n" << m7;
+   
+   m7 = m4;
+
+   std::cout << "M7 after assignment: \n" << m7;
+
+   m7 += m3;
+
+   std::cout << "M7 after assignment: \n" << m7;
+   
+
+   Matrix<double> m22 {{ 1.0,   1.0,    8.0 },
+                       { 11.0,  1.0,    1.0 },
+                       { 1.0,   1.0,    0.0 }};
+
+   std::cout << "M22 before: \n" << m22;
+
+   std::cout << "M22 * M21 product: \n" << m22 * m21 << "\n"; 
+
+   m22 *= m21;
+
+   std::cout << "M22 now: \n" << m22; 
+
+   Matrix<double> m23 = transpose(m22);
+
+   std::cout << "Transpose M23 is \n" << m23; 
+
+   
+
+   return 0;
 }
