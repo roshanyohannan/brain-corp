@@ -34,7 +34,7 @@ Matrix(std::initializer_list<std::vector<T>> list)
 
     for(const auto& row : list)
     {
-        if(row.size() != dims.cols) throw(std::invalid_argument("column count is inconsistent"));
+        if(row.size() != dims.cols) throw(std::invalid_argument("inconsistent column count"));
 
         data.insert(data.end(), row.begin(), row.end());
     }
@@ -43,7 +43,7 @@ Matrix(std::initializer_list<std::vector<T>> list)
 T operator() (int row, int col) const override
 {
     if(row < 0 || row > dims.rows || col < 0 || col > dims.cols)
-        throw(std::invalid_argument("argument is outside bounds"));
+        throw(std::invalid_argument("out-of-bounds access"));
 
     return data[row * dims.cols + col];
 }
@@ -51,7 +51,7 @@ T operator() (int row, int col) const override
 T& operator() (int row, int col)
 {
     if(row < 0 || row > dims.rows || col < 0 || col > dims.cols)
-        throw(std::invalid_argument("argument is outside bounds"));
+        throw(std::invalid_argument("out-of-bounds access"));
 
     return data[row * dims.cols + col];
 }

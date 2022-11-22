@@ -15,7 +15,7 @@ MultiplyExpression(const Expression<T>& left, const Expression<T>& right)
   op2 (right)
 {
   if(left.size().cols != right.size().rows)
-    throw(std::invalid_argument("Given Matrices are incompatible for multiplication")); 
+    throw(std::invalid_argument("matrices are incompatible for multiplication")); 
 }
 
 T operator() (int row, int col) const override
