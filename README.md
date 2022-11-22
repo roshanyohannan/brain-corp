@@ -5,13 +5,17 @@ Speedy is a header only C++ library for linear algebra.  Its Matrix class is des
 
 ## Installation
 Since speedy is a header only library, it is easy to integrate in existing projects 
-1. Drop the include folder in your source tree. 
-2. Include Speedy.h in your source file
+1. Add brain-corp/include to your include paths. 
+2. #Include Speedy.h in your source file
 3. Start using Speedy::Matrix
 
 ## Usage
 See doc/tutorial
 ```
+    #include <Speedy.h>
+
+    using namespace Speedy;
+
     //Constructors
     Matrix<int> m0;                                 // Create empty matrix size 0x0
     
@@ -75,6 +79,9 @@ See doc/tutorial
     std::cout << "Version: " << version();           // Print Semver format version (Major.Minor.Patch)
 
 ```
+
+## Assumptions
+Only 2 dimensional, MxN matrices are considered.
 
 ## Design
 There are two major themes here - performance & intuitiveness. 
