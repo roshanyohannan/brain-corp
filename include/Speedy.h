@@ -4,5 +4,6 @@
 #include "Core/Printer.h"
 #include "Core/AddExpression.h"
 #include "Core/MultiplyExpression.h"
+#include "Core/TransposeExpression.h"
 
 namespace Speedy { }
