@@ -14,22 +14,22 @@ TransposeExpression(const Expression& expression)
 
 int operator() (int row, int col) const override
 {
-	return op1(col, row);
+  return op1(col, row);
 }
 
 Dims size() const override
 {
-	return op1.size();
+  return op1.size();
 }
 
 
 private:
-	const Expression& op1;
+  const Expression& op1;
 };
 
 TransposeExpression transpose (const Expression& expression)
 {
-	return TransposeExpression(expression);
+  return TransposeExpression(expression);
 }
 
 } //namespace 
