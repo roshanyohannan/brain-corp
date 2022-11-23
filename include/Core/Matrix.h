@@ -64,42 +64,61 @@ Dims size() const override
     return dims;
 }
 
-Matrix<T>& operator+= (const Expression<T>& expression)
-{
-    if(dims != expression.size())
-        throw(std::invalid_argument("matrices are incompatible for addition"));
-
-    for(int row = 0; row < dims.rows; row++)
-        for(int col = 0; col < dims.cols; col++)
-            this->operator()(row,col) += expression(row, col);
-
-    return *this;    
-}
-
-Matrix<T>& operator*= (const Expression<T>& expression)
-{
-    Dims other = expression.size();
-
-    if(dims.cols != other.rows)
-        throw(std::invalid_argument("matrices are incompatible for multiplication"));
-
-    for(int row = 0; row < dims.rows; row++)
-        for(int col = 0; col < other.cols; col++)
-        {
-            T sum{};
-            for(int k = 0; k < dims.cols; k++)  sum += this->operator()(row,k) * expression(k, col);
-            this->operator()(row,col) = sum;
-        }
-
-    return *this;    
-}
-
 
 private:
     Dims                dims;
     std::vector<T>      data;
 };
 
+template<typename T>
+bool operator==(const Matrix<T>& left, const Matrix<T>& right)
+{
+    if(left.size() != right.size()) return false;
+
+    for(int i = 0; i < left.size().rows; i++)
+        for(int j = 0; j < left.size().cols; j++)
+            if(left(i,j) != right(i,j))  return false;
+
+    return true;
+}
+
+template<typename T>
+Matrix<T>& operator+= (Matrix<T>& left, const Expression<T>& expression)
+{
+    if(left.size() != expression.size())
+        throw(std::invalid_argument("matrices are incompatible for addition"));
+
+    for(int row = 0; row < left.size().rows; row++)
+        for(int col = 0; col < left.size().cols; col++)
+            left(row,col) += expression(row, col);
+
+    return left;    
+}
+
+
+template<typename T>
+Matrix<T>& operator*= (Matrix<T>& matrix, const Expression<T>& expression)
+{
+    Dims left  = matrix    .size();
+    Dims right = expression.size();
+
+    if(left.cols != right.rows)
+        throw(std::invalid_argument("matrices are incompatible for multiplication"));
+
+    Matrix<T> result(left.rows, right.cols);
+
+    for(int row = 0; row < left.rows; row++)
+        for(int col = 0; col < right.cols; col++)
+        {
+            T sum{};
+            for(int k = 0; k < left.cols; k++)  sum += matrix(row,k) * expression(k, col);
+            result(row,col) = sum;
+        }
+
+    std::swap(matrix, result);
+
+    return matrix;    
+}
 
 } // namespace
 
