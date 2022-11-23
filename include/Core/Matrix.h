@@ -32,8 +32,8 @@ Matrix(const Expression<T>& expression)
 
 Matrix(std::initializer_list<std::vector<T>> list)
 {
-    dims.rows = list.size();
-    dims.cols = list.size() == 0 ? 0 : list.begin()->size();
+    dims.rows = static_cast<int>(list.size());
+    dims.cols = list.size() == 0 ? 0 : static_cast<int>(list.begin()->size());
 
     for(const auto& row : list)
     {
