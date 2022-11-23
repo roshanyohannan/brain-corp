@@ -18,7 +18,7 @@ MultiplyExpression(const Expression<T>& left, const Expression<T>& right)
     throw(std::invalid_argument("matrices are incompatible for multiplication")); 
 }
 
-T operator() (int row, int col) const override
+T operator() (size_t row, size_t col) const override
 {
   T sum = 0;
   

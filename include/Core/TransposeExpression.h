@@ -13,7 +13,7 @@ TransposeExpression(const Expression<T>& expression)
 : op1 (expression)
 {}
 
-T operator() (int row, int col) const override
+T operator() (size_t row, size_t col) const override
 {
   return op1(col, row);
 }

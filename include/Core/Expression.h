@@ -7,14 +7,14 @@ namespace Speedy {
 
 struct Dims
 {
-    Dims(int r, int c) : rows(r), cols(c)
+    Dims(size_t r, size_t c) : rows(r), cols(c)
     { }
 
     Dims()
     { }
 
-    int rows = 0;
-    int cols = 0;
+    size_t rows = 0;
+    size_t cols = 0;
 };
 
 
@@ -22,8 +22,8 @@ template<typename T>
 class Expression
 {
 public:
-    virtual T       operator()  (int row, int col)  const = 0;
-    virtual Dims    size        ()                  const = 0;
+    virtual T       operator()  (size_t row, size_t col)  const = 0;
+    virtual Dims    size        ()                        const = 0;
 };
 
 

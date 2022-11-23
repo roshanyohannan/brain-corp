@@ -15,7 +15,7 @@ public:
 Matrix()
 {}
 
-Matrix(int rows, int cols) : dims(rows,cols)
+Matrix(size_t rows, size_t cols) : dims(rows,cols)
 {
     data.resize(rows * cols, {});
 }
@@ -32,8 +32,8 @@ Matrix(const Expression<T>& expression)
 
 Matrix(std::initializer_list<std::vector<T>> list)
 {
-    dims.rows = static_cast<int>(list.size());
-    dims.cols = list.size() == 0 ? 0 : static_cast<int>(list.begin()->size());
+    dims.rows = list.size();
+    dims.cols = list.size() == 0 ? 0 : list.begin()->size();
 
     for(const auto& row : list)
     {
@@ -43,17 +43,17 @@ Matrix(std::initializer_list<std::vector<T>> list)
     }
 }
 
-T operator() (int row, int col) const override
+T operator() (size_t row, size_t col) const override
 {
-    if(row < 0 || row > dims.rows || col < 0 || col > dims.cols)
+    if(row > dims.rows || col > dims.cols)
         throw(std::invalid_argument("out-of-bounds access"));
 
     return data[row * dims.cols + col];
 }
 
-T& operator() (int row, int col)
+T& operator() (size_t row, size_t col)
 {
-    if(row < 0 || row > dims.rows || col < 0 || col > dims.cols)
+    if(row > dims.rows || col > dims.cols)
         throw(std::invalid_argument("out-of-bounds access"));
 
     return data[row * dims.cols + col];

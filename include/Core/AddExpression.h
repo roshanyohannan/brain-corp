@@ -18,7 +18,7 @@ AddExpression(const Expression<T>& left, const Expression<T>& right)
     throw(std::invalid_argument("Dimensions of operands for addition do not match")); 
 }
 
-T operator() (int row, int col) const override
+T operator() (size_t row, size_t col) const override
 {
   return op1(row, col) + op2(row, col);
 }
