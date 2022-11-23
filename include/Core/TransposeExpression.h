@@ -10,22 +10,22 @@ class TransposeExpression : public Expression<T>
 {
 public:
 TransposeExpression(const Expression<T>& expression)
-: op1 (expression)
+: op (expression)
 {}
 
 T operator() (size_t row, size_t col) const override
 {
-  return op1(col, row);
+  return op(col, row);
 }
 
 Dims size() const override
 {
-  return op1.size();
+  return { op.size().cols, op.size().rows };
 }
 
 
 private:
-  const Expression<T>& op1;
+  const Expression<T>& op;
 };
 
 template<typename T>
