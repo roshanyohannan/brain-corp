@@ -5,6 +5,7 @@
 #include <ostream>
 #include <iomanip>
 
+///! \brief     Prints a matrix on the console / output stream
 template<typename T>
 std::ostream& operator << (std::ostream& out, const Speedy::Expression<T>& matrix)
 {
