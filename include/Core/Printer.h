@@ -1,11 +1,11 @@
+#ifndef SPEEDY_PRINTER_H
+#define SPEEDY_PRINTER_H
+
 #include "Matrix.h"
 #include <ostream>
 #include <iomanip>
 
-#ifndef SPEEDY_PRINTER_H
-#define SPEEDY_PRINTER_H
-
-
+///! \brief     Prints a matrix on the console / output stream
 template<typename T>
 std::ostream& operator << (std::ostream& out, const Speedy::Expression<T>& matrix)
 {

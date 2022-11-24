@@ -1,15 +1,16 @@
-#include <sstream>
-
 #ifndef SPEEDY_VERSION_H
 #define SPEEDY_VERSION_H
 
-#define SPEEDY_MAJOR_VERSION 0
-#define SPEEDY_MINOR_VERSION 1
-#define SPEEDY_PATCH_VERSION 0
+#include <sstream>
+
+#define SPEEDY_MAJOR_VERSION 0      //!< Major version of Speedy library 
+#define SPEEDY_MINOR_VERSION 1      //!< Minor version of Speedy library
+#define SPEEDY_PATCH_VERSION 0      //!< Patch version of Speedy library
 
 namespace Speedy
 {
 
+//! \brief  Returns a string containing version in the Major.Minor.Patch format
 std::string version()
 {
     std::ostringstream stream;

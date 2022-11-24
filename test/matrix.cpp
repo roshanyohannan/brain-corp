@@ -135,15 +135,47 @@ TEST(Operations, CompoundMultiplication)
 
 TEST(Operations, Transpose)
 {
-	Matrix<int> a  {{ 1,  1,  1 },
-                    { 2,  2,  2 },
-                    { 3,  3,  3 }};
+	Matrix<int> a  {{ 1,  1 },
+                    { 2,  2 },
+                    { 3,  3 }};
 
     Matrix<int> result = transpose(a);
 
     Matrix<int> expected {{ 1, 2, 3 },
-						  { 1, 2, 3 },
 						  { 1, 2, 3 }};
 
 	EXPECT_TRUE(expected == result);
+}
+
+TEST(Operations, TransposeSelf)
+{
+	Matrix<int> a  {{ 1,  1 },
+                    { 2,  2 },
+                    { 3,  3 }};
+
+    a = transpose(a);
+
+    Matrix<int> expected {{ 1, 2, 3 },
+						  { 1, 2, 3 }};
+
+	EXPECT_TRUE(expected == a);
+}
+
+TEST(Operations, Expression)
+{
+	Matrix<int> a  {{ 1,  1,  1 },
+                    { 2,  2,  2 },
+                    { 3,  3,  3 }};
+
+    Matrix<int> b {{ -1 },
+    			   {  0 },
+    			   {  1 }};
+
+    Matrix<int> c {{ 1, 1, 1}};
+
+    Matrix<int> result = transpose(a * b + transpose(c));
+
+    Matrix<int> expected = {{ 1, 1, 1 }};
+
+	EXPECT_TRUE(expected == result);	    						
 }

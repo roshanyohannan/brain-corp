@@ -2,13 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 
 project(SpeedyTest VERSION 1.0)
 
-set(CMAKE_CXX_STANDARD          11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-set(CMAKE_CXX_FLAGS_RELEASE     "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-set(CMAKE_CXX_FLAGS_DEBUG       "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
-
-add_subdirectory("${PROJECT_SOURCE_DIR}/../include/" "${PROJECT_SOURCE_DIR}/../build/Speedy")
-
 include(FetchContent)
 FetchContent_Declare(
 	googletest
