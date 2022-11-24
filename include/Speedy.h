@@ -1,4 +1,6 @@
-#include <iostream>
+#ifndef SPEEDY_H
+#define SPEEDY_H
+
 #include "Core/Version.h"
 #include "Core/Matrix.h"
 #include "Core/Printer.h"
@@ -7,3 +9,5 @@
 #include "Core/TransposeExpression.h"
 
 namespace Speedy { }
+
+#endif

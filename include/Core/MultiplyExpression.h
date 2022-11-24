@@ -1,7 +1,7 @@
-#include "Expression.h"
-
 #ifndef SPEEDY_MULTIPLY_EXPRESSION_H
 #define SPEEDY_MULTIPLY_EXPRESSION_H
+
+#include "Expression.h"
 
 namespace Speedy{
 

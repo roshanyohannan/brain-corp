@@ -1,7 +1,7 @@
-#include <sstream>
-
 #ifndef SPEEDY_VERSION_H
 #define SPEEDY_VERSION_H
+
+#include <sstream>
 
 #define SPEEDY_MAJOR_VERSION 0
 #define SPEEDY_MINOR_VERSION 1

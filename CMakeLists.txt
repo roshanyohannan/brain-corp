@@ -21,4 +21,4 @@ enable_testing()
 
 add_subdirectory(test)
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION Speedy)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include DESTINATION "${CMAKE_PROJECT_NAME}")

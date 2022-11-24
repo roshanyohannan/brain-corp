@@ -1,9 +1,9 @@
+#ifndef SPEEDY_MATRIX_H
+#define SPEEDY_MATRIX_H
+
 #include "Expression.h"
 #include <vector>
 #include <initializer_list>
-
-#ifndef SPEEDY_MATRIX_H
-#define SPEEDY_MATRIX_H
 
 namespace Speedy {
 
