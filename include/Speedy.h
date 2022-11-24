@@ -8,6 +8,7 @@
 #include "Core/MultiplyExpression.h"
 #include "Core/TransposeExpression.h"
 
+//! namespace for Speedy library
 namespace Speedy { }
 
 #endif

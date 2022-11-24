@@ -147,6 +147,20 @@ TEST(Operations, Transpose)
 	EXPECT_TRUE(expected == result);
 }
 
+TEST(Operations, TransposeSelf)
+{
+	Matrix<int> a  {{ 1,  1 },
+                    { 2,  2 },
+                    { 3,  3 }};
+
+    a = transpose(a);
+
+    Matrix<int> expected {{ 1, 2, 3 },
+						  { 1, 2, 3 }};
+
+	EXPECT_TRUE(expected == a);
+}
+
 TEST(Operations, Expression)
 {
 	Matrix<int> a  {{ 1,  1,  1 },

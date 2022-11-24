@@ -7,19 +7,26 @@
 
 namespace Speedy {
 
+///! \brief     Represents an arbitrary sized matrix of M x N dynamically allocated elements.
 template<typename T>
 class Matrix : public Expression<T>
 {
 
 public:
+//! \brief      Default constructor that creates a 0x0 matrix
 Matrix()
 {}
 
+//! \brief       Parameterized constructor that creates a row x col sized matrix. All elements are default intialized.
+//! \param rows  Row count 
+//! \param cols  Column count 
 Matrix(size_t rows, size_t cols) : dims(rows,cols)
 {
     data.resize(rows * cols, {});
 }
 
+//! \brief              Constructor that evaluates an expression tree and assigns elementwise result to the new matrix
+//! \param expression   expression object that needs to be evaluated 
 Matrix(const Expression<T>& expression)
 {
     dims = expression.size();
@@ -30,6 +37,12 @@ Matrix(const Expression<T>& expression)
             this->operator()(i,j) = expression(i,j);
 }
 
+
+//! \brief              Constructor that takes an initialization list and constructs a matrix. Rows and columns are deduced automatically
+//! \details            Usage: Matrix<double> m3 {{ 1.0,   0.0,    0.0 },
+//!                                               { 0.0,   1.0,    0.0 },
+//!                                               { 0.0,   0.0,    1.0 }};
+//! \param list         Initialization list. The column count should  be consistent across rows else invalid_argument exception is thrown 
 Matrix(std::initializer_list<std::vector<T>> list)
 {
     dims.rows = list.size();
@@ -43,6 +56,9 @@ Matrix(std::initializer_list<std::vector<T>> list)
     }
 }
 
+//! \brief      Accessor for the row,col element of the matrix.
+//! \param row  index of row. It should be less than row count of the matrix else invalid_argument exception is thrown 
+//! \param col  index of column. It should be less than col count of the matrix else invalid_argument exception is thrown
 T operator() (size_t row, size_t col) const override
 {
     if(row > dims.rows || col > dims.cols)
@@ -51,6 +67,9 @@ T operator() (size_t row, size_t col) const override
     return data[row * dims.cols + col];
 }
 
+//! \brief      Mutator for the row,col element of the matrix
+//! \param row  index of row. It should be less than row count of the matrix else invalid_argument exception is thrown 
+//! \param col  index of column. It should be less than col count of the matrix else invalid_argument exception is thrown
 T& operator() (size_t row, size_t col)
 {
     if(row > dims.rows || col > dims.cols)
@@ -59,6 +78,7 @@ T& operator() (size_t row, size_t col)
     return data[row * dims.cols + col];
 }
 
+//! \brief     Accessor for matrix dimensions
 Dims size() const override
 {
     return dims;
@@ -66,10 +86,12 @@ Dims size() const override
 
 
 private:
-    Dims                dims;
-    std::vector<T>      data;
+    Dims                dims;       //!< Dimensions of the matrix
+    std::vector<T>      data;       //!< Underlying data of the matrix stored in a continguous container (std vector) which supports random element access
 };
 
+
+//! \brief Equality operator for two matrices. Performs elementwise equality check
 template<typename T>
 bool operator==(const Matrix<T>& left, const Matrix<T>& right)
 {
@@ -82,6 +104,7 @@ bool operator==(const Matrix<T>& left, const Matrix<T>& right)
     return true;
 }
 
+//! \brief Compund Addition operator. Adds the given right handside expression to the matrix and updates it in place.
 template<typename T>
 Matrix<T>& operator+= (Matrix<T>& left, const Expression<T>& expression)
 {
@@ -95,7 +118,7 @@ Matrix<T>& operator+= (Matrix<T>& left, const Expression<T>& expression)
     return left;    
 }
 
-
+//! \brief Compund Multiplication operator. Multiplies the given right handside expression to the matrix and updates it in place.
 template<typename T>
 Matrix<T>& operator*= (Matrix<T>& matrix, const Expression<T>& expression)
 {
@@ -117,7 +140,7 @@ Matrix<T>& operator*= (Matrix<T>& matrix, const Expression<T>& expression)
 
     std::swap(matrix, result);
 
-    return matrix;    
+    return matrix;
 }
 
 } // namespace
